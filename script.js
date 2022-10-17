@@ -72,7 +72,6 @@ function validaciones() {
 
 function valmenores(){
   document.getElementById("menores").innerHTML = edad1;
-  console.log("menores"+menores);
 }
 
 function valmayores(){
