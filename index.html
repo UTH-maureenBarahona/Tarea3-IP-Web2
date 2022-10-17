@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea 2 - Primer Parcial - Maureen Barahona</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="script.js"></script>
+  </head>
+    <body class="container">
+
+        <div id="capturaDiv">
+            <table>
+                <tr>
+                    <td>Ingrese Nombre:</td>
+                    <td><input type="text"  id="nombre" onkeypress="return soloLetras(event);"></td>
+                </tr>
+                <tr>
+                    <td>Ingrese Edad:</td>
+                    <td><input type="text"  id="edad" onkeypress="return soloNumeros(event);"></td>
+                </tr>
+                <tr>
+                    <td>Ingrese Peso:</td>
+                    <td><input type="text"  id="peso" onkeypress="return soloNumeros(event);"></td>
+                </tr>
+                <tr>
+                    <td><br>
+                        <button id="botonAdd" onclick="agregar();">Agregar persona a la lista</button>
+                    </td>
+                    <td><br>
+                        <button id="botonCancel" onclick="cancelar();">Cancelar</button>
+                        <button id="botonGrafico" onclick="generarGrafico();">Generar Grafico</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table id="grilla">
+                <thead>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Peso</th>
+                    <th>Eliminar</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div id="pieChart"></div>
+
+    </body>
+</html>
