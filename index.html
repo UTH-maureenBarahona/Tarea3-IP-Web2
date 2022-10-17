@@ -13,6 +13,12 @@
     <div id="capturaDiv">
       <table>
         <tr>
+          <td>Ingrese Id:</td>
+          <td>
+            <input type="text" id="id" onkeypress="return soloLetras(event);" />
+          </td>
+        </tr>
+        <tr>
           <td>Ingrese Nombre:</td>
           <td>
             <input
@@ -34,13 +40,12 @@
           </td>
         </tr>
         <tr>
-          <td>Ingrese Peso:</td>
+          <td>Seleccione Sexo:</td>
           <td>
-            <input
-              type="text"
-              id="peso"
-              onkeypress="return validateDecimal(event);"
-            />
+            <select id="sexo">
+              <option value="femenino">Femenino</option>
+              <option value="masculino">Masculino</option>
+            </select>
           </td>
         </tr>
         <tr>
@@ -63,9 +68,10 @@
     <div>
       <table id="grilla">
         <thead>
+          <th>Id</th>
           <th>Nombre</th>
           <th>Edad</th>
-          <th>Peso</th>
+          <th>sexo</th>
           <th>Eliminar</th>
         </thead>
         <tbody></tbody>
@@ -73,7 +79,10 @@
     </div>
 
     <div id="total">
-      <label>Cantidad de registros </label><label id="totalreg">? </label>
+      <label>Cantidad de registros </label><label id="totalreg">0 </label>
+      <p><label>Menores de edad </label><label id="menores">0</label></p>
+
+      <p><label>Mayores de edad </label><label id="mayores">0 </label></p>
     </div>
     <div id="pieChart"></div>
   </body>

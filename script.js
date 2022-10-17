@@ -20,23 +20,26 @@ function soloLetras(e) {
 
 var edad1 = 0;
 var edad2 = 0;
-var edad3 = 0;
-var edad4 = 0;
+var masculino = 0;
+var femenino = 0;
 
 var contTotal = 0;
 
 function agregar() {
+  var id = document.getElementById("id").value;
   var nombre = document.getElementById("nombre").value;
   var edad = document.getElementById("edad").value;
-  var peso = document.getElementById("peso").value;
+  var sexo = document.getElementById("sexo").value;
 
   var registro =
+  "<tr><td>" +
+    id +
     "<tr><td>" +
     nombre +
     "</td><td>" +
     edad +
     "</td><td>" +
-    peso +
+    sexo +
     "</td><td><button class='btnDel' onclick='eliminar(event);'>Eliminar</button></td></tr>";
 
   var add = document.createElement("tr");
@@ -46,16 +49,34 @@ function agregar() {
   contTotal++;
   console.log(contTotal);
 
-  valTotal();
-  valEdad();
+  valTotal();  
+  validaciones();
+  valmayores();
+  valmenores();
+  generarGrafico();
 }
 
-function valEdad() {
-  var edad = document.getElementById("edad").value;
-  if (edad > 0 && edad <= 10) edad1++;
-  else if (edad > 10 && edad <= 20) edad2++;
-  else if (edad > 20 && edad <= 30) edad3++;
-  else if (edad > 30) edad4++;
+function validaciones() {
+  var edad = Number(document.getElementById("edad").value);
+  var sexo = document.getElementById("sexo").value;
+  if (edad > 0 && edad <= 17) {
+    edad1++;
+  }else if (edad > 17){
+    edad2++;
+  }
+  //
+  if (sexo == "femenino") femenino++;
+  else if (sexo == "masculino") masculino++;
+}
+
+
+function valmenores(){
+  document.getElementById("menores").innerHTML = edad1;
+  console.log("menores"+menores);
+}
+
+function valmayores(){
+  document.getElementById("mayores").innerHTML = edad2;
 }
 
 function valTotal() {
@@ -66,6 +87,7 @@ function cancelar() {
   document.getElementById("nombre").value = "";
   document.getElementById("edad").value = "";
   document.getElementById("peso").value = "";
+  document.getElementById("sexo").value = "";
 }
 
 function eliminar(evento) {
@@ -75,14 +97,17 @@ function eliminar(evento) {
     contTotal--;
 
     var edad = document.getElementById("edad").value;
-    if (edad > 0 && edad <= 10) edad1--;
-    else if (edad > 10 && edad <= 20) edad2--;
-    else if (edad > 20 && edad <= 30) edad3--;
-    else if (edad > 30) edad4--;
+    if (edad > 0 && edad <= 17) edad1--;
+    else if (edad > 17) edad2--;
+
+    var sexo = document.getElementById("sexo").value;
+  if (sexo == "femenino") femenino--;
+  else if (sexo == "masculino") masculino--;
 
     fila.remove();
     valTotal();
-    console.log(contTotal);
+    valmayores();
+    valmenores();
   }
 }
 
@@ -101,11 +126,9 @@ function generarGrafico() {
 
   function grafico() {
     var data = google.visualization.arrayToDataTable([
-      ["Edades", "Personas por Edades"],
-      ["0 a 10 años", edad1],
-      ["11 a 20 años", edad2],
-      ["21 a 30 años", edad3],
-      ["de 31 años en adelante", edad4],
+      ["Sexo", "Personas segun su sexo"],
+      ["femenino", femenino],
+      ["masculino", masculino]
     ]);
 
     var options = {
@@ -113,9 +136,7 @@ function generarGrafico() {
       pieHole: 0.4,
       slices: {
         0: { color: "red" },
-        1: { color: "blue" },
-        2: { color: "yellow" },
-        3: { color: "green" },
+        1: { color: "blue" }
       },
     };
 
